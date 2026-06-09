@@ -4415,8 +4415,9 @@ const DIFF_REMAP = {
 const ADMIN_EMAIL='aydintwink2010@gmail.com';
 const BAD_WORDS=['fuck','shit','ass','bitch','dick','pussy','cock','cunt','nigger','nigga','faggot','fag','retard','whore','slut','bastard','damn','piss','crap','twat','wanker','bollocks','arsehole','asshole','motherfucker','idiot','stupid','dumb','loser','kys','rape','kill','sex','porn','nude','naked','penis','vagina','boobs','tits','breasts','spastic'];
 function isBadName(name){
-  const n=name.toLowerCase().replace(/[^a-z0-9]/g,'');
-  return BAD_WORDS.some(w=>n.includes(w));
+  const n=name.toLowerCase();
+  // Check as whole word (word boundary) to avoid blocking "Cassandra" for containing "ass" etc.
+  return BAD_WORDS.some(w=>new RegExp('(?<![a-z])'+w+'(?![a-z])').test(n));
 }
 const S = { user:null, players:[], bCfg:{subject:"Mathematics",difficulty:"Foundation",oppType:"ai",mode:"solo",qcount:10,openEnded:false,aiLevel:"Student"}, lbFilter:"All", seenQs:{}, isGuest:false };
 let pendingUser = null;
@@ -4754,10 +4755,10 @@ function loadUserData(email,cb){
 
 function saveProgress(){
   if(!S.user || S.isGuest || !S.user.email) return;
-  // Persist seenQs (convert Sets → arrays for Firebase storage)
+  // Persist seenQs (convert Sets → arrays for Firebase storage, capped at 200 per subject)
   const seenQsObj = {};
   for(const [k,v] of Object.entries(S.seenQs)){
-    if(v instanceof Set && v.size > 0) seenQsObj[k] = [...v];
+    if(v instanceof Set && v.size > 0) seenQsObj[k] = [...v].slice(-200);
   }
   S.user.seenQs = seenQsObj;
   saveUserData(S.user);
@@ -5014,7 +5015,7 @@ function checkEmailVerified(){
         loadUserData(auth.currentUser.email, u=>{
           if(u) startApp(u);
           else {
-            const newU={id:auth.currentUser.uid,name:auth.currentUser.email.split('@')[0],email:auth.currentUser.email,curr:'IGCSE',grade:'Foundation',elo:1200,wins:0,losses:0,aiToday:0,pvpToday:0,isPro:false,history:[],country:'🇦🇿',streak:0,joined:new Date().toISOString()};
+            const newU={id:auth.currentUser.uid,name:auth.currentUser.displayName||auth.currentUser.email.split('@')[0],email:auth.currentUser.email,curr:'IGCSE',grade:'Foundation',elo:1200,wins:0,losses:0,aiToday:0,pvpToday:0,isPro:false,history:[],country:'🇦🇿',streak:0,joined:new Date().toISOString()};
             saveUserData(newU); startApp(newU);
           }
         });
@@ -5959,10 +5960,10 @@ function rDash(){
         ${recent.length===0?`<div style="text-align:center;padding:16px 0"><div style="font-size:2rem;margin-bottom:8px">⚔️</div><p style="font-size:.8rem;color:var(--t3);margin-bottom:12px">No battles yet</p><button onclick="appGo('battle')" style="background:var(--acl);border:1px solid rgba(99,102,241,.2);color:var(--ac);font-family:'Inter',sans-serif;font-weight:600;font-size:.8rem;padding:6px 14px;border-radius:8px;cursor:pointer">Start now →</button></div>`:
         recent.map((b,i)=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:${i<recent.length-1?'1px solid rgba(255,255,255,.04)':'none'}">
           <div style="display:flex;align-items:center;gap:8px">
-            <div style="width:28px;height:28px;border-radius:8px;background:${b.won?'rgba(16,185,129,.12)':'rgba(239,68,68,.12)'};border:1px solid ${b.won?'rgba(16,185,129,.2)':'rgba(239,68,68,.2)'};display:flex;align-items:center;justify-content:center;font-size:.8rem">${b.won?'✓':'✗'}</div>
+            <div style="width:28px;height:28px;border-radius:8px;background:${b.draw?'rgba(148,163,184,.12)':b.won?'rgba(16,185,129,.12)':'rgba(239,68,68,.12)'};border:1px solid ${b.draw?'rgba(148,163,184,.2)':b.won?'rgba(16,185,129,.2)':'rgba(239,68,68,.2)'};display:flex;align-items:center;justify-content:center;font-size:.8rem">${b.draw?'=':b.won?'✓':'✗'}</div>
             <div><div style="font-size:.8rem;font-weight:600;color:var(--t1)">${(b.oppName||'Opp').slice(0,10)}</div><div style="font-size:.7rem;color:var(--t3)">${b.diff||b.subject||''}</div></div>
           </div>
-          <span style="font-size:.8rem;font-weight:700;color:${(b.eloDelta||0)>0?'#6ee7b7':'#fca5a5'}">${(b.eloDelta||0)>0?'+':''}${b.eloDelta||0}</span>
+          <span style="font-size:.8rem;font-weight:700;color:${b.draw?'var(--t3)':(b.eloDelta||0)>0?'#6ee7b7':'#fca5a5'}">${b.draw?'Draw':(b.eloDelta||0)>0?'+':''+(b.eloDelta||0)}</span>
         </div>`).join('')}
       </div>
 
@@ -6010,7 +6011,7 @@ function rDash(){
 
   render(null);
   if(db){
-    db.ref('leaderboard').orderByChild('elo').once('value').then(snap=>{
+    db.ref('leaderboard').orderByChild('elo').limitToLast(200).once('value').then(snap=>{
       const data=snap.val()||{};
       const sorted=Object.values(data).sort((a,b)=>b.elo-a.elo);
       const rank=sorted.findIndex(p=>(p.uid&&p.uid===u.id)||(p.email&&p.email===u.email))+1;
@@ -6709,7 +6710,7 @@ function runBattle(cfg){
     if(cfg.isDaily && S._dailyChallengeToday && !S.isGuest){
       S.user.dailyChallenge=S._dailyChallengeToday;
     }
-    S.user.history=[...(S.user.history||[]),{won:isDraw?false:won,draw:isDraw,oppName:opponent.name,subject,diff:difficulty,eloDelta:delta,score:uSc,oppScore:oSc,total:questions.length,practice:noElo}];
+    S.user.history=[...(S.user.history||[]),{won:isDraw?false:won,draw:isDraw,oppName:opponent.name,subject,diff:difficulty,eloDelta:delta,score:uSc,oppScore:oSc,total:questions.length,practice:noElo}].slice(-50);
     S.players=S.players.map(p=>p.id===S.user.id?{...S.user}:p);
 
     // ── WEAKNESS DETECTION ────────────────────────────
@@ -6749,7 +6750,7 @@ function runBattle(cfg){
 
     updateAppNav();
     if(!S.isGuest) saveProgress();
-    toast(won?`Victory! +${delta} ELO 🏆`:`Defeat. ${delta} ELO`,won?'var(--gr)':'var(--re)');
+    toast(isDraw?`Draw! No ELO change 🤝`:won?`Victory! +${delta} ELO 🏆`:`Defeat. ${delta} ELO`,isDraw?'var(--t2)':won?'var(--gr)':'var(--re)');
     if(won && newStreak >= 2) setTimeout(()=>showStreakCelebration(newStreak), 1200);
 
     const currentBadge = badge(S.user.elo);
@@ -6818,8 +6819,8 @@ function runBattle(cfg){
 
     H('av-battle',`
       <div style="text-align:center;padding:32px 0 16px">
-        <div style="font-size:64px;margin-bottom:12px;animation:scaleIn .4s cubic-bezier(.2,0,0,1)">${won?'🏆':'💪'}</div>
-        <h1 class="syne w8" style="font-size:clamp(26px,5vw,40px);color:${won?'var(--gr)':'var(--re)'};margin-bottom:6px">${won?'Victory!':'Defeat'}</h1>
+        <div style="font-size:64px;margin-bottom:12px;animation:scaleIn .4s cubic-bezier(.2,0,0,1)">${isDraw?'🤝':won?'🏆':'💪'}</div>
+        <h1 class="syne w8" style="font-size:clamp(26px,5vw,40px);color:${isDraw?'var(--t2)':won?'var(--gr)':'var(--re)'};margin-bottom:6px">${isDraw?'Draw!':won?'Victory!':'Defeat'}</h1>
         <p class="muted f13 mb16">vs ${opponent.name} · ${subject} · ${difficulty}</p>
         ${rankHtml}
       </div>
@@ -6837,8 +6838,8 @@ function runBattle(cfg){
           <div class="syne w8 cr" style="font-size:2.5rem;line-height:1">${oSc}</div>
         </div>
       </div>
-      <div class="card tac mb14" style="padding:14px 18px;background:${delta>=0?'var(--grl)':'var(--rel)'};border-color:${delta>=0?'var(--gr)':'var(--re)'}">
-        <div class="syne w8" style="font-size:1.4rem;color:${noElo?'var(--t3)':delta>=0?'var(--gr)':'var(--re)'}">${noElo?'Practice mode — no ELO':(delta>0?'+':'')+delta+' ELO → '+S.user.elo}</div>
+      <div class="card tac mb14" style="padding:14px 18px;background:${isDraw?'var(--b1)':delta>=0?'var(--grl)':'var(--rel)'};border-color:${isDraw?'var(--b2)':delta>=0?'var(--gr)':'var(--re)'}">
+        <div class="syne w8" style="font-size:1.4rem;color:${noElo?'var(--t3)':isDraw?'var(--t2)':delta>=0?'var(--gr)':'var(--re)'}">${noElo?'Practice mode — no ELO':isDraw?'Draw — no ELO change':(delta>0?'+':'')+delta+' ELO → '+S.user.elo}</div>
         ${cfg.aiLevel&&!noElo?`<div style="font-size:.72rem;color:var(--t3);margin-top:4px">${AI_LEVELS[cfg.aiLevel]?.icon||''} ${cfg.aiLevel} AI difficulty</div>`:''}
         <div class="dim f12 mt4">${S.user.wins}W · ${S.user.losses}L · ${currentBadge}</div>
       </div>
@@ -6923,10 +6924,12 @@ function rAnalytics(){
   const history = u.history || [];
   const totalBattles = history.length;
   const totalWins = history.filter(h=>h.won).length;
-  const overallAcc = totalBattles>0 ? Math.round((totalWins/totalBattles)*100) : 0;
+  const nonDrawBattles = history.filter(h=>!h.draw).length;
+  const overallAcc = nonDrawBattles>0 ? Math.round((totalWins/nonDrawBattles)*100) : 0;
   const avgScore = totalBattles>0 ? Math.round(history.reduce((s,h)=>s+(h.score||0),0)/totalBattles*10)/10 : 0;
   const recentTrend = history.slice(-5);
-  const recentWinRate = recentTrend.length>0 ? Math.round(recentTrend.filter(h=>h.won).length/recentTrend.length*100) : 0;
+  const recentNonDraw = recentTrend.filter(h=>!h.draw).length;
+  const recentWinRate = recentNonDraw>0 ? Math.round(recentTrend.filter(h=>h.won).length/recentNonDraw*100) : 0;
   const trending = recentWinRate >= overallAcc ? '📈' : '📉';
 
   // ELO sparkline (last 10 battles reconstruct)
@@ -6951,7 +6954,7 @@ function rAnalytics(){
     <h1 class="syne w8 f22 mb20">📊 Performance Dashboard</h1>
 
     <!-- Headline stats -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:10px;margin-bottom:18px">
       <div style="background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(99,102,241,.06));border:1px solid rgba(99,102,241,.2);border-radius:16px;padding:16px 12px;text-align:center">
         <div class="syne w8" style="font-size:1.6rem;color:#818cf8;line-height:1">${u.elo}</div>
         <div style="font-size:.62rem;color:var(--t3);margin-top:6px;letter-spacing:.5px">ELO</div>
@@ -7575,13 +7578,15 @@ function rProfile(){
     <button class="btn bo w100 mb10" onclick="doLogout()">Log Out</button>
     <button class="btn bo w100" style="border-color:var(--re);color:var(--re);opacity:.7;font-size:.8rem" onclick="showDeleteAccount()">🗑 Delete Account</button>`);
 }
-// Pro activation codes — add new codes here when someone pays
-// Format: 'CODE': true
-const PRO_CODES = {
-  'BRAIN2026': true,
-  'LEAGUE99': true,
-  'PROAZ001': true,
-};
+const PRO_CODE_HASHES = new Set([
+  '67e1932b28e721051ee5843dcb6b8d9af25d95ab27c0c0135a6b0f9c8b10eaa1',
+  '85daeb44cd14ecd50707772e2f490c4f28d3cbec9f9ac5431bb8c2f58644aa28',
+  'd74eaf2bb8bfd6b2f49ea68cd469adbcc864633056a2e6a270c0c2cd6cf7d786'
+]);
+async function _hashCode(s){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
 
 function upgradePro(){
   const ov = document.createElement('div');
@@ -7606,12 +7611,13 @@ function upgradePro(){
   setTimeout(()=>{ const inp=document.getElementById('pro-code-inp'); if(inp) inp.focus(); }, 100);
 }
 
-function checkProCode(){
+async function checkProCode(){
   const inp = document.getElementById('pro-code-inp');
   const code = (inp?.value||'').trim().toUpperCase();
   if(!code){ toast('Enter a code first','var(--re)'); return; }
 
-  if(!PRO_CODES[code]){
+  const hash = await _hashCode(code);
+  if(!PRO_CODE_HASHES.has(hash)){
     toast('Invalid code. Please check and try again.','var(--re)');
     if(inp){ inp.style.borderColor='var(--re)'; setTimeout(()=>inp.style.borderColor='',1500); }
     return;
