@@ -38,11 +38,12 @@
 /* Fix select dropdown in all browsers */
 select{-webkit-appearance:none;-moz-appearance:none;appearance:none}
 select.inp{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239298c8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
-[data-theme="dark"]{--bg:#0e0f1c;--surf:#14162a;--card:#191c33;--el:#1e2238;--b1:#252844;--b2:#2e3260;--t1:#f2f4ff;--t2:#9298c8;--t3:#4c5088;--ac:#6366f1;--ach:#818cf8;--acl:#6366f122;--go:#f59e0b;--gol:#f59e0b22;--gr:#10b981;--grl:#10b98122;--re:#ef4444;--rel:#ef444422;--pu:#a855f7;--pul:#a855f722;--cy:#06b6d4;--cyl:#06b6d422;--sh:0 20px 60px rgba(0,0,0,.7),0 2px 8px rgba(0,0,0,.4);--sh2:0 4px 20px rgba(0,0,0,.5),0 1px 4px rgba(0,0,0,.3);--sh3:0 1px 3px rgba(0,0,0,.4);--glow:0 0 60px rgba(99,102,241,.2),0 0 120px rgba(99,102,241,.08);}
+[data-theme="dark"]{--bg:#06070f;--surf:#0c0e1d;--card:#0f1124;--el:#131628;--b1:#1a1d38;--b2:#22265a;--t1:#eef0ff;--t2:#8890c4;--t3:#444878;--ac:#6366f1;--ach:#818cf8;--acl:#6366f11e;--go:#f59e0b;--gol:#f59e0b1e;--gr:#10b981;--grl:#10b9811e;--re:#ef4444;--rel:#ef44441e;--pu:#a855f7;--pul:#a855f71e;--cy:#06b6d4;--cyl:#06b6d41e;--sh:0 24px 70px rgba(0,0,0,.85),0 4px 12px rgba(0,0,0,.6);--sh2:0 8px 28px rgba(0,0,0,.6),0 2px 6px rgba(0,0,0,.4);--sh3:0 2px 6px rgba(0,0,0,.5);--glow:0 0 80px rgba(99,102,241,.25),0 0 160px rgba(99,102,241,.1);}
 [data-theme="light"]{--bg:#f5f6ff;--surf:#fff;--card:#fff;--el:#fafbff;--b1:#e0e4f8;--b2:#c8cef0;--t1:#0c0d20;--t2:#44487a;--t3:#9298c8;--ac:#4f46e5;--ach:#4338ca;--acl:#4f46e518;--go:#d97706;--gol:#d9770618;--gr:#059669;--grl:#05966918;--re:#dc2626;--rel:#dc262618;--pu:#7c3aed;--pul:#7c3aed18;--cy:#0891b2;--cyl:#0891b218;--sh:0 20px 60px rgba(12,13,32,.12),0 2px 8px rgba(12,13,32,.06);--sh2:0 4px 16px rgba(12,13,32,.08),0 1px 4px rgba(12,13,32,.04);--sh3:0 1px 3px rgba(12,13,32,.06);--glow:0 0 40px rgba(79,70,229,.12);}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:15px}
 body{background:var(--bg);color:var(--t1);font-family:'Inter',sans-serif;line-height:1.65;overflow-x:hidden;transition:background .25s,color .25s;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 55% at 15% 0%,rgba(99,102,241,.08),transparent 55%),radial-gradient(ellipse 60% 45% at 85% 100%,rgba(168,85,247,.07),transparent 55%);pointer-events:none;z-index:0}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--ac);border-radius:2px}
 a{text-decoration:none;color:inherit}button{font-family:'Inter',sans-serif}
 .syne{font-family:'Syne',sans-serif}
@@ -103,20 +104,21 @@ h1,h2,h3{font-family:'Syne',sans-serif;line-height:1.2;color:var(--t1)}
 .w5{font-weight:500}.w6{font-weight:600}.w7{font-weight:700}.w8{font-weight:800}
 .mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mt20{margin-top:20px}.mt24{margin-top:24px}.mt32{margin-top:32px}
 .mb6{margin-bottom:6px}.mb8{margin-bottom:8px}.mb10{margin-bottom:10px}.mb12{margin-bottom:12px}.mb14{margin-bottom:14px}.mb16{margin-bottom:16px}.mb20{margin-bottom:20px}.mb24{margin-bottom:24px}
-.card{background:linear-gradient(160deg,var(--card),var(--el));border:1px solid var(--b1);border-radius:20px;padding:22px;box-shadow:var(--sh2);transition:border-color .3s,transform .35s cubic-bezier(.2,0,0,1),box-shadow .35s;position:relative;contain:layout style}
-.card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(160deg,rgba(255,255,255,.03),transparent 60%);pointer-events:none}
-.ch{cursor:pointer}.ch:hover{border-color:rgba(99,102,241,.45);transform:translateY(-6px);box-shadow:0 28px 70px rgba(0,0,0,.5),0 0 60px rgba(99,102,241,.14),0 0 0 1px rgba(99,102,241,.15)}
+.card{background:linear-gradient(145deg,rgba(15,17,36,.85),rgba(9,10,22,.92));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(99,102,241,.1);border-radius:20px;padding:22px;box-shadow:0 8px 32px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .3s,transform .35s cubic-bezier(.2,0,0,1),box-shadow .35s;position:relative;contain:layout style}
+.card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(145deg,rgba(255,255,255,.035),transparent 55%);pointer-events:none}
+.ch{cursor:pointer}.ch:hover{border-color:rgba(99,102,241,.5);transform:translateY(-6px);box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 0 1px rgba(99,102,241,.25),0 0 60px rgba(99,102,241,.12)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:12px;font-weight:600;font-size:.933rem;cursor:pointer;padding:11px 22px;transition:all .22s cubic-bezier(.2,0,0,1);white-space:nowrap;letter-spacing:.02em;position:relative;overflow:hidden}
 .btn::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.12),transparent 60%);pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .2s}
 .btn:hover::before{opacity:1}
 .btn::after{content:'';position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.06),transparent);pointer-events:none;border-radius:inherit}
-.bp{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;box-shadow:0 4px 20px rgba(99,102,241,.35),inset 0 1px 0 rgba(255,255,255,.15)}.bp:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(99,102,241,.5),0 0 0 1px rgba(255,255,255,.12),inset 0 1px 0 rgba(255,255,255,.2)}
+.bp{background:linear-gradient(135deg,#4f46e5,#7c3aed,#6366f1);background-size:200% 200%;animation:gradShift 5s ease infinite;color:#fff;box-shadow:0 0 28px rgba(99,102,241,.55),0 4px 20px rgba(99,102,241,.4),inset 0 1px 0 rgba(255,255,255,.2);letter-spacing:.02em}.bp:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(99,102,241,.8),0 8px 36px rgba(99,102,241,.55),inset 0 1px 0 rgba(255,255,255,.25)}
 .bo{background:rgba(255,255,255,.04);color:var(--t1);border:1.5px solid var(--b2)}.bo:hover{border-color:rgba(99,102,241,.5);color:var(--ach);background:rgba(99,102,241,.08);box-shadow:0 0 20px rgba(99,102,241,.1)}
 .bgo{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-weight:700;box-shadow:0 4px 20px rgba(245,158,11,.35)}.bgo:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(245,158,11,.5)}
 .bgr{background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-weight:700;box-shadow:0 4px 16px rgba(16,185,129,.3)}.bgr:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(16,185,129,.4)}
 .bre{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;font-weight:700;box-shadow:0 4px 16px rgba(239,68,68,.3)}.bre:hover{transform:translateY(-1px)}
 .bsm{padding:8px 16px;font-size:.8rem;border-radius:10px}.blg{padding:15px 32px;font-size:1rem;border-radius:14px}
 .btn:disabled{opacity:.35;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.btn:active:not(:disabled){transform:scale(.96) translateY(1px)!important;transition:transform .08s!important}
 .bglow{animation:pulse 2.5s infinite}
 /* ELEVATION SYSTEM */
 .el-1{box-shadow:var(--sh3)}
@@ -176,11 +178,11 @@ section{padding:96px 5vw}
 .modal{background:linear-gradient(160deg,var(--card),var(--el));border:1px solid rgba(99,102,241,.15);border-radius:24px;padding:28px;width:100%;max-width:420px;animation:scaleIn .25s cubic-bezier(.2,0,0,1);box-shadow:0 32px 80px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.04),inset 0 1px 0 rgba(255,255,255,.06);max-height:90vh;overflow-y:auto;position:relative}
 .modal::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:200px;height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,.5),transparent)}
 /* APP */
-.anav{position:sticky;top:0;z-index:200;height:56px;background:rgba(var(--bg-rgb,14,15,28),.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--b1);padding:0 3vw;display:flex;align-items:center;justify-content:space-between;transition:background .25s;gap:6px;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.03)}
+.anav{position:sticky;top:0;z-index:200;height:56px;background:rgba(6,7,15,.94);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border-bottom:1px solid rgba(99,102,241,.15);padding:0 3vw;display:flex;align-items:center;justify-content:space-between;transition:background .25s;gap:6px;overflow:hidden;box-shadow:0 4px 30px rgba(0,0,0,.5),0 1px 0 rgba(99,102,241,.1)}
 #mobile-bnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(var(--bg-rgb,14,15,28),.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid var(--b1);padding:6px 0 calc(6px + env(safe-area-inset-bottom,0px));justify-content:space-around;align-items:center;box-shadow:0 -4px 24px rgba(0,0,0,.35)}
-.mbtab{background:none;border:none;color:var(--t3);font-family:'Inter',sans-serif;font-size:.55rem;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 2px;border-radius:8px;transition:color .2s;flex:1;-webkit-tap-highlight-color:transparent}
-.mbtab .mbi{font-size:1.3rem;line-height:1.2;transition:transform .2s}
-.mbtab.ac{color:var(--ac)}.mbtab.ac .mbi{transform:scale(1.1)}
+.mbtab{background:none;border:none;color:var(--t3);font-family:'Inter',sans-serif;font-size:.55rem;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 4px;border-radius:12px;transition:color .2s,background .2s;flex:1;-webkit-tap-highlight-color:transparent}
+.mbtab .mbi{display:flex;align-items:center;justify-content:center;width:24px;height:24px;transition:transform .2s}
+.mbtab.ac{color:var(--ac);background:rgba(99,102,241,.12)}.mbtab.ac .mbi{transform:scale(1.12)}
 @media(max-width:640px){
   #mobile-bnav{display:flex!important}
   #atabs{display:none!important}
@@ -190,18 +192,22 @@ section{padding:96px 5vw}
   .av{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))!important}
 }
 .atab{background:transparent;border:1.5px solid transparent;color:var(--t3);border-radius:10px;padding:7px 13px;cursor:pointer;font-size:.867rem;font-weight:600;display:inline-flex;align-items:center;gap:5px;transition:all .2s cubic-bezier(.2,0,0,1);white-space:nowrap;flex-shrink:0;position:relative}
-.atab.ac,.atab:hover{background:rgba(99,102,241,.12);border-color:rgba(99,102,241,.3);color:#a5b4fc}
-.atab.ac{font-weight:700;color:#818cf8}
-.atab.ac::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:24px;height:2px;background:#6366f1;border-radius:2px}
+.atab.ac,.atab:hover{background:rgba(99,102,241,.16);border-color:rgba(99,102,241,.45);color:#a5b4fc;box-shadow:0 0 16px rgba(99,102,241,.15),inset 0 1px 0 rgba(255,255,255,.06)}
+.atab.ac{font-weight:700;color:#c4b5fd}
+.atab.ac::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:32px;height:2px;background:linear-gradient(90deg,#6366f1,#a855f7);border-radius:2px;box-shadow:0 0 8px rgba(99,102,241,.8)}
 .av{display:none;max-width:1020px;margin:0 auto;padding:28px 4vw calc(80px + env(safe-area-inset-bottom,0px))}
 .av.on{display:block;animation:fadeIn .3s cubic-bezier(.2,0,0,1)}
 /* QUIZ OPTIONS */
-.qopt{background:linear-gradient(160deg,var(--card),var(--el));border:1.5px solid var(--b1);color:var(--t1);border-radius:14px;padding:15px 18px;font-size:.933rem;cursor:pointer;text-align:left;transition:all .18s cubic-bezier(.2,0,0,1);width:100%;line-height:1.5;position:relative;overflow:hidden;box-shadow:var(--sh3);transform:translateZ(0)}
-.qopt::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent)}
-.qopt:hover:not(:disabled){border-color:rgba(99,102,241,.4);background:rgba(99,102,241,.06);transform:translateY(-2px) scale(1.01);box-shadow:0 8px 24px rgba(0,0,0,.3),0 0 20px rgba(99,102,241,.1)}
-.qopt:active:not(:disabled){transform:scale(.97) translateY(0)!important;box-shadow:0 2px 8px rgba(0,0,0,.3)!important}
-.qopt.ok{background:rgba(16,185,129,.1)!important;border-color:rgba(16,185,129,.4)!important;color:#6ee7b7!important;box-shadow:0 0 20px rgba(16,185,129,.15)!important}
-.qopt.ng{background:rgba(239,68,68,.1)!important;border-color:rgba(239,68,68,.4)!important;color:#fca5a5!important}
+.qopt{background:linear-gradient(135deg,rgba(15,17,36,.9),rgba(9,10,22,.95));border:1.5px solid rgba(255,255,255,.07);color:var(--t1);border-radius:16px;padding:18px 22px;font-size:.967rem;cursor:pointer;text-align:left;transition:all .18s cubic-bezier(.2,0,0,1);width:100%;line-height:1.5;position:relative;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.4);transform:translateZ(0)}
+.qopt::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
+.qopt::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#6366f1,#a855f7);border-radius:16px 0 0 16px;opacity:0;transition:opacity .18s}
+.qopt:hover:not(:disabled){border-color:rgba(99,102,241,.55);background:rgba(99,102,241,.09);transform:translateX(6px);box-shadow:0 0 30px rgba(99,102,241,.15),-4px 0 0 0 transparent}
+.qopt:hover:not(:disabled)::after{opacity:1}
+.qopt:active:not(:disabled){transform:scale(.97) translateX(0)!important;transition:transform .08s!important}
+.qopt.ok{background:rgba(16,185,129,.12)!important;border-color:rgba(16,185,129,.5)!important;color:#6ee7b7!important;box-shadow:0 0 30px rgba(16,185,129,.2)!important}
+.qopt.ok::after{background:linear-gradient(180deg,#10b981,#34d399);opacity:1}
+.qopt.ng{background:rgba(239,68,68,.1)!important;border-color:rgba(239,68,68,.45)!important;color:#fca5a5!important}
+.qopt.ng::after{background:linear-gradient(180deg,#ef4444,#fca5a5);opacity:1}
 .qopt:disabled{cursor:default}
 /* TOAST */
 #toast{position:fixed;bottom:16px;right:12px;left:12px;z-index:999;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:360px;margin-left:auto}
@@ -1359,13 +1365,13 @@ section{padding:96px 5vw}
       <div class="nico" style="font-size:18px">🧠</div>
     </div>
     <div id="atabs" style="display:flex;flex-direction:row;flex-nowrap:nowrap;overflow-x:auto;flex:1;justify-content:center;gap:4px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;padding:0 4px">
-      <button class="atab ac" data-v="dash" onclick="appGo('dash')">🏠</button>
-      <button class="atab" data-v="battle" onclick="appGo('battle')">⚔️ Battle</button>
-      <button class="atab" data-v="analytics" onclick="appGo('analytics')">📊 Progress</button>
-      <button class="atab" data-v="papers" onclick="appGo('papers')">⏱ Practice</button>
-      <button class="atab" data-v="ranks" onclick="appGo('ranks')">🏆 Ranks</button>
-      <button class="atab" data-v="class" onclick="appGo('class')">🎮 Class</button>
-      <button class="atab" data-v="profile" onclick="appGo('profile')">👤 Profile</button>
+      <button class="atab ac" data-v="dash" onclick="appGo('dash')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></button>
+      <button class="atab" data-v="battle" onclick="appGo('battle')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg> Battle</button>
+      <button class="atab" data-v="analytics" onclick="appGo('analytics')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h2V10H5v10zm4 0h2V4H9v16zm4 0h2v-7h-2v7zm4 0h2v-4h-2v4z"/></svg> Progress</button>
+      <button class="atab" data-v="papers" onclick="appGo('papers')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg> Practice</button>
+      <button class="atab" data-v="ranks" onclick="appGo('ranks')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg> Ranks</button>
+      <button class="atab" data-v="class" onclick="appGo('class')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> Class</button>
+      <button class="atab" data-v="profile" onclick="appGo('profile')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> Profile</button>
     </div>
     <div class="row g6" style="flex-shrink:0">
       <span class="syne w8 f16 ca navscore" id="aelo">1200</span>
@@ -1385,22 +1391,22 @@ section{padding:96px 5vw}
   <!-- Mobile bottom navigation -->
   <div id="mobile-bnav">
     <button class="mbtab ac" data-mbv="dash" onclick="appGo('dash')">
-      <span class="mbi">🏠</span><span>Home</span>
+      <span class="mbi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span><span>Home</span>
     </button>
     <button class="mbtab" data-mbv="battle" onclick="appGo('battle')">
-      <span class="mbi">⚔️</span><span>Battle</span>
+      <span class="mbi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></span><span>Battle</span>
     </button>
     <button class="mbtab" data-mbv="ranks" onclick="appGo('ranks')">
-      <span class="mbi">🏆</span><span>Ranks</span>
+      <span class="mbi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg></span><span>Ranks</span>
     </button>
     <button class="mbtab" data-mbv="papers" onclick="appGo('papers')">
-      <span class="mbi">⏱</span><span>Practice</span>
+      <span class="mbi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg></span><span>Practice</span>
     </button>
     <button class="mbtab" data-mbv="profile" onclick="appGo('profile')">
-      <span class="mbi">👤</span><span>Profile</span>
+      <span class="mbi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span><span>Profile</span>
     </button>
     <button class="mbtab" id="more-tab" onclick="toggleMoreMenu()">
-      <span class="mbi">⋯</span><span>More</span>
+      <span class="mbi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><span>More</span>
     </button>
   </div>
 
@@ -3392,6 +3398,267 @@ const QB_ALEVEL_BOOST={
     }
   }
 } catch(e){ console.warn('QB_ALEVEL_BOOST merge error:', e); }
+})();
+
+// ══ QB_ALEVEL_MATH_EXTRA — 110 new A-Level Mathematics questions ══
+const QB_ALEVEL_MATH_EXTRA={
+  "A-Level":{
+    Mathematics:{
+      AS:[
+        {q:"Remainder when f(x)=2x³−x²+3x−5 is divided by (x−2)?",o:["13","9","−1","11"],a:0,e:"f(2)=16−4+6−5=13"},
+        {q:"Is (x−3) a factor of x³−5x²+8x−6?",o:["Yes, f(3)=0","No, f(3)≠0","Yes, f(−3)=0","Cannot determine"],a:0,e:"f(3)=27−45+24−6=0 ✓"},
+        {q:"Solve x²−7x+12>0",o:["x<3 or x>4","3<x<4","x<−4 or x>−3","−4<x<−3"],a:0,e:"(x−3)(x−4)>0 → x<3 or x>4"},
+        {q:"Solve simultaneously: y=x+2 and y=x².",o:["(−1,1) and (2,4)","(1,3) and (−2,0)","(0,0) and (2,4)","(−2,4) and (1,1)"],a:0,e:"x²=x+2 → x²−x−2=0 → x=−1,y=1 or x=2,y=4"},
+        {q:"Complete the square: x²+6x+2",o:["(x+3)²−7","(x+3)²+2","(x+6)²−34","(x+3)²+11"],a:0,e:"(x+3)²−9+2=(x+3)²−7"},
+        {q:"Discriminant of 3x²−5x+4?",o:["−23","23","7","25"],a:0,e:"b²−4ac=25−48=−23 (no real roots)"},
+        {q:"Solve log₃(x)=4",o:["81","12","64","27"],a:0,e:"x=3⁴=81"},
+        {q:"log₅(125)=?",o:["3","5","25","2.5"],a:0,e:"5³=125, so log₅125=3"},
+        {q:"Simplify log₂(8)+log₂(4)−log₂(2)",o:["4","5","6","3"],a:0,e:"log₂(8×4÷2)=log₂16=4"},
+        {q:"Solve 2^(x+1)=16",o:["3","4","2","5"],a:0,e:"2^(x+1)=2⁴ → x+1=4 → x=3"},
+        {q:"Graph of y=(x+2)²−5 has vertex at?",o:["(−2,−5)","(2,5)","(2,−5)","(−2,5)"],a:0,e:"Vertex at (−2,−5) from completed square form"},
+        {q:"Sum of roots of 3x²−9x+6=0?",o:["3","−3","2","6"],a:0,e:"Sum=−b/a=9/3=3"},
+        {q:"Product of roots of 2x²−5x+4=0?",o:["2","5/2","−5/2","4"],a:0,e:"Product=c/a=4/2=2"},
+        {q:"Coefficient of x² in (1+2x)⁵?",o:["40","10","80","20"],a:0,e:"C(5,2)×(2)²=10×4=40"},
+        {q:"Midpoint of A(2,5) and B(8,1)?",o:["(5,3)","(3,5)","(6,6)","(10,6)"],a:0,e:"((2+8)/2,(5+1)/2)=(5,3)"},
+        {q:"Gradient of line joining (1,4) and (5,12)?",o:["2","3","4","8"],a:0,e:"m=(12−4)/(5−1)=8/4=2"},
+        {q:"Line through (3,2) with gradient −2. Equation?",o:["y=−2x+8","y=2x−4","y=−2x+6","y=−2x+2"],a:0,e:"y−2=−2(x−3) → y=−2x+8"},
+        {q:"Circle x²+y²+4x−6y+4=0. Centre?",o:["(−2,3)","(2,−3)","(−4,6)","(2,3)"],a:0,e:"Complete square: (x+2)²+(y−3)²=9, centre (−2,3)"},
+        {q:"Circle x²+y²+4x−6y+4=0. Radius?",o:["3","9","2","4"],a:0,e:"(x+2)²+(y−3)²=9 → r=3"},
+        {q:"Does point (1,1) lie inside circle x²+y²=10?",o:["Yes, 1+1<10","No, 1+1>10","On the circle","Cannot determine"],a:0,e:"1+1=2<10, so inside"},
+        {q:"Gradient of line perpendicular to 3x+4y=12?",o:["4/3","−3/4","3/4","−4/3"],a:0,e:"y=−3x/4+3, gradient=−3/4; perpendicular=4/3"},
+        {q:"Area of triangle with vertices A(0,0), B(6,0), C(6,4)?",o:["12","24","8","6"],a:0,e:"½×base×height=½×6×4=12"},
+        {q:"Two lines y=2x+1 and y=2x−3 are?",o:["Parallel","Perpendicular","Identical","Intersecting"],a:0,e:"Same gradient, different intercepts → parallel"},
+        {q:"Area of triangle: a=6, b=8, included angle C=30°?",o:["12","24","48","6√3"],a:0,e:"Area=½ab·sinC=½×6×8×0.5=12"},
+        {q:"Exact value of cos60°?",o:["1/2","√3/2","√2/2","1"],a:0,e:"cos60°=1/2 (standard exact value)"},
+        {q:"Exact value of tan45°?",o:["1","√3","1/√3","√2"],a:0,e:"tan45°=1"},
+        {q:"Solve sinx=0.5 for 0°≤x≤360°.",o:["30° and 150°","30° and 210°","150° and 210°","60° and 120°"],a:0,e:"sinx=0.5 → x=30° and 180°−30°=150°"},
+        {q:"Solve cosx=−√3/2 for 0°≤x≤360°.",o:["150° and 210°","30° and 330°","120° and 240°","60° and 300°"],a:0,e:"cos150°=cos210°=−√3/2"},
+        {q:"Period of y=sin(2x)?",o:["180°","360°","90°","720°"],a:0,e:"Period=360°/2=180°"},
+        {q:"Geometric series converges when common ratio r satisfies?",o:["|r|<1","|r|>1","r>0","r=1"],a:0},
+        {q:"Arithmetic sequence 5,8,11... 10th term?",o:["32","29","35","30"],a:0,e:"a₁₀=5+9×3=32"},
+        {q:"Sum to infinity of 10+5+2.5+...?",o:["20","15","25","10"],a:0,e:"S∞=a/(1−r)=10/0.5=20"},
+        {q:"Arithmetic series: first term 2, last term 50, 25 terms. Sum?",o:["650","325","1300","675"],a:0,e:"S=25/2×(2+50)=650"},
+        {q:"nth term of 3,7,11,15...?",o:["4n−1","3n+1","4n+3","3n−1"],a:0,e:"a+(n−1)d=3+4(n−1)=4n−1"},
+        {q:"y=4x⁵−3x²+7. Find dy/dx.",o:["20x⁴−6x","4x⁴−3x","5x⁴−6x","20x⁴+7"],a:0,e:"Differentiate term by term: 20x⁴−6x"},
+        {q:"y=√x. dy/dx=?",o:["1/(2√x)","2√x","−1/(2x^(3/2))","1/√x"],a:0,e:"y=x^(1/2), dy/dx=(1/2)x^(−1/2)=1/(2√x)"},
+        {q:"y=1/x². dy/dx=?",o:["−2/x³","2/x³","−2x³","1/(2x)"],a:0,e:"y=x^(−2), dy/dx=−2x^(−3)=−2/x³"},
+        {q:"Gradient of y=x²−4x+1 at x=3?",o:["2","3","5","−1"],a:0,e:"dy/dx=2x−4; at x=3: 6−4=2"},
+        {q:"Normal to y=x² at x=2 has gradient?",o:["−1/4","4","1/4","−4"],a:0,e:"Tangent gradient=4; normal gradient=−1/4"},
+        {q:"y=x³−3x² Turning points at x=?",o:["0 and 2","1 and 3","0 and 3","−1 and 1"],a:0,e:"dy/dx=3x²−6x=3x(x−2)=0 → x=0 or 2"},
+        {q:"∫(4x³+2x)dx=?",o:["x⁴+x²+C","4x⁴+x²+C","12x²+2+C","x³+x+C"],a:0,e:"x⁴+x²+C"},
+        {q:"∫₀²(2x+1)dx=?",o:["6","4","8","5"],a:0,e:"[x²+x]₀²=(4+2)−0=6"},
+        {q:"∫x^(−2)dx=?",o:["−1/x+C","1/x+C","−2/x³+C","x^(−3)/3+C"],a:0,e:"x^(−1)/(−1)+C=−1/x+C"},
+        {q:"Area under y=x² between x=0 and x=3?",o:["9","3","27","6"],a:0,e:"[x³/3]₀³=27/3=9"},
+        {q:"y=x²+2x−3. Minimum value of y?",o:["−4","−3","−1","−2"],a:0,e:"x=−1 (vertex): 1−2−3=−4"},
+        {q:"If f(x)=x³, find f''(x).",o:["6x","3x²","6","3x"],a:0,e:"f'(x)=3x², f''(x)=6x"},
+        {q:"Expand (2+3x)³. Find the coefficient of x.",o:["54","18","36","12"],a:0,e:"C(3,1)×2²×3=3×4×3=36"},
+        {q:"Point of inflection of y=x³−3x occurs where f''(x)=?",o:["0","1","−1","6"],a:0,e:"f''(x)=6x=0 at x=0"},
+        {q:"The graph of y=|x−3| has a vertex at?",o:["(3,0)","(0,3)","(−3,0)","(0,−3)"],a:0,e:"y=0 when x=3, giving vertex (3,0)"},
+        {q:"Sketch y=2^x passes through?",o:["(0,1) and (1,2)","(0,0) and (1,2)","(1,0) and (2,4)","(−1,0)"],a:0,e:"Any exponential y=aˣ passes through (0,1) and (1,a)"},
+        {q:"Radian equivalent of 90°?",o:["π/2","π","2π","π/4"],a:0,e:"90°=π/2 radians"},
+        {q:"Arc length for radius 5 cm, angle 1.2 rad?",o:["6 cm","3 cm","4 cm","7.5 cm"],a:0,e:"l=rθ=5×1.2=6 cm"},
+        {q:"Area of sector: radius 4 cm, angle 0.5 rad?",o:["4 cm²","2 cm²","8 cm²","1 cm²"],a:0,e:"A=½r²θ=½×16×0.5=4 cm²"},
+        {q:"Solve 2cosx=1 for 0°≤x≤360°.",o:["60° and 300°","30° and 330°","60° and 120°","120° and 240°"],a:0,e:"cosx=0.5 → x=60° or 360°−60°=300°"},
+        {q:"Arithmetic mean of first 10 positive integers?",o:["5.5","5","10","11"],a:0,e:"Sum=55, mean=55/10=5.5"},
+        {q:"In AP, if 3rd term=10 and 7th term=22, common difference=?",o:["3","4","2","5"],a:0,e:"7th−3rd=4d=12 → d=3"},
+        {q:"y=3x²−12x+7. The minimum value occurs at x=?",o:["2","3","4","−2"],a:0,e:"dy/dx=6x−12=0 → x=2"},
+        {q:"∫₁⁴√x dx=?",o:["14/3","8/3","7/3","16/3"],a:0,e:"[2x^(3/2)/3]₁⁴=2(8)/3−2(1)/3=14/3"},
+        {q:"Line y=3x+2 intersects y-axis at?",o:["(0,2)","(2,0)","(0,3)","(−2/3,0)"],a:0,e:"Set x=0: y=2, so (0,2)"},
+        {q:"∫eˣdx=?",o:["eˣ+C","xeˣ+C","eˣ/x+C","e^(x+1)+C"],a:0,e:"eˣ is its own integral"},
+      ],
+      A2:[
+        {q:"y=sin(3x). dy/dx=?",o:["3cos(3x)","cos(3x)","−3cos(3x)","3sin(3x)"],a:0,e:"Chain rule: 3cos(3x)"},
+        {q:"y=(2x+3)⁵. dy/dx=?",o:["10(2x+3)⁴","5(2x+3)⁴","(2x+3)⁴","10(2x+3)⁵"],a:0,e:"Chain: 5(2x+3)⁴×2=10(2x+3)⁴"},
+        {q:"y=e^(4x). dy/dx=?",o:["4e^(4x)","e^(4x)","4eˣ","xe^(4x)"],a:0,e:"Chain rule: 4e^(4x)"},
+        {q:"y=ln(5x). dy/dx=?",o:["1/x","5/x","1/(5x)","5lnx"],a:0,e:"Chain: (1/5x)×5=1/x"},
+        {q:"y=(x²+1)⁴. dy/dx=?",o:["8x(x²+1)³","4(x²+1)³","4x(x²+1)³","(x²+1)³"],a:0,e:"Chain: 4(x²+1)³×2x=8x(x²+1)³"},
+        {q:"y=e^(x²). dy/dx=?",o:["2xe^(x²)","e^(x²)","2e^(x²)","x²e^(x²)"],a:0,e:"Chain: e^(x²)×2x=2xe^(x²)"},
+        {q:"y=ln(x²+4). dy/dx=?",o:["2x/(x²+4)","1/(x²+4)","2x","ln(2x)"],a:0,e:"Chain: 1/(x²+4)×2x=2x/(x²+4)"},
+        {q:"y=√(3x²+1). dy/dx=?",o:["3x/√(3x²+1)","6x/√(3x²+1)","1/(2√(3x²+1))","3x"],a:0,e:"Chain: (1/2)(3x²+1)^(−1/2)×6x=3x/√(3x²+1)"},
+        {q:"y=x²sinx. dy/dx=?",o:["2xsinx+x²cosx","x²cosx","2xcosx","sinx+xcosx"],a:0,e:"Product: 2xsinx+x²cosx"},
+        {q:"y=xeˣ. dy/dx=?",o:["eˣ(x+1)","xeˣ","eˣ","xeˣ+1"],a:0,e:"Product: eˣ+xeˣ=eˣ(x+1)"},
+        {q:"y=xlnx. dy/dx=?",o:["lnx+1","1/x","x/lnx","lnx"],a:0,e:"Product: lnx+x×(1/x)=lnx+1"},
+        {q:"y=sinx/x. dy/dx=?",o:["(xcosx−sinx)/x²","cosx/x","sinx/x²","(sinx−xcosx)/x²"],a:0,e:"Quotient: (xcosx−sinx)/x²"},
+        {q:"y=eˣ/x. dy/dx=?",o:["eˣ(x−1)/x²","eˣ/x²","eˣ","(eˣ+1)/x"],a:0,e:"Quotient: (xeˣ−eˣ)/x²=eˣ(x−1)/x²"},
+        {q:"dy/dx=sec²x comes from differentiating?",o:["tanx","sinx","cosx","secx"],a:0,e:"d/dx(tanx)=sec²x"},
+        {q:"∫xeˣdx=?",o:["eˣ(x−1)+C","xeˣ+C","x²eˣ/2+C","eˣ(x+1)+C"],a:0,e:"IBP: u=x, dv=eˣ → xeˣ−eˣ=eˣ(x−1)+C"},
+        {q:"∫xsinxdx=?",o:["sinx−xcosx+C","−xcosx+C","xcosx−sinx+C","cosx+C"],a:0,e:"IBP: u=x, dv=sinx → −xcosx+sinx+C"},
+        {q:"∫lnxdx=?",o:["xlnx−x+C","x/lnx+C","1/x+C","xlnx+C"],a:0,e:"IBP: xlnx−∫x·(1/x)dx=xlnx−x+C"},
+        {q:"∫₀¹xeˣdx=?",o:["1","e−1","e","2"],a:0,e:"[eˣ(x−1)]₀¹=(e·0)−(1·(−1))=1"},
+        {q:"∫2x(x²+1)⁴dx using u=x²+1?",o:["(x²+1)⁵/5+C","(x²+1)⁵+C","2x(x²+1)⁵/5+C","(x²+1)⁴/4+C"],a:0,e:"du=2xdx → ∫u⁴du=u⁵/5+C"},
+        {q:"∫(2x)/(x²+3)dx=?",o:["ln(x²+3)+C","2ln(x²+3)+C","(x²+3)²+C","ln(2x)+C"],a:0,e:"u=x²+3, du=2xdx → ∫du/u=ln|u|+C"},
+        {q:"∫cosx·sin²xdx using u=sinx?",o:["sin³x/3+C","cos³x/3+C","sinxcosx+C","sin²x/2+C"],a:0,e:"du=cosxdx → ∫u²du=u³/3=sin³x/3+C"},
+        {q:"cos(A+B)=?",o:["cosAcosB−sinAsinB","cosAcosB+sinAsinB","sinAcosB+cosAsinB","cosAsinB−sinAcosB"],a:0,e:"Compound angle formula"},
+        {q:"sin(2x)=?",o:["2sinxcosx","sin²x−cos²x","2cosx","1−2sin²x"],a:0,e:"Double angle: sin2x=2sinxcosx"},
+        {q:"cos(2x) in terms of cosx only?",o:["2cos²x−1","1−2sin²x","cos²x−sin²x","2cosx"],a:0,e:"cos2x=2cos²x−1 (replace sin² with 1−cos²)"},
+        {q:"R·sin(x+α): find R for 3sinx+4cosx.",o:["5","7","3","4"],a:0,e:"R=√(3²+4²)=5"},
+        {q:"sin(A−B)=?",o:["sinAcosB−cosAsinB","sinAcosB+cosAsinB","cosAcosB−sinAsinB","cosAsinB−sinAcosB"],a:0,e:"sin(A−B)=sinAcosB−cosAsinB"},
+        {q:"Solve sin(2x)=1 for 0°≤x≤360°.",o:["45° and 225°","90°","45°","45° and 135°"],a:0,e:"2x=90° or 450° → x=45° or 225°"},
+        {q:"Vector a=(2,−1,3), b=(1,4,−2). a+b=?",o:["(3,3,1)","(1,−5,5)","(2,−4,−6)","(3,5,1)"],a:0,e:"(2+1,−1+4,3−2)=(3,3,1)"},
+        {q:"Magnitude of vector (3,4,0)?",o:["5","7","√7","25"],a:0,e:"|v|=√(9+16+0)=5"},
+        {q:"Unit vector in direction of (6,8,0)?",o:["(0.6,0.8,0)","(6,8,0)","(3,4,0)","(0.3,0.4,0)"],a:0,e:"Magnitude=10; (6/10,8/10,0)=(0.6,0.8,0)"},
+        {q:"Dot product of (1,2,3) and (4,−1,2)?",o:["8","14","12","6"],a:0,e:"1×4+2×(−1)+3×2=4−2+6=8"},
+        {q:"Two vectors are perpendicular when their dot product=?",o:["0","1","−1","Their magnitudes multiply"],a:0,e:"a·b=|a||b|cosθ; perpendicular → θ=90° → cos90°=0"},
+        {q:"Solve dy/dx=2y. General solution?",o:["y=Ae^(2x)","y=2x+C","y=e^(2x)","y=A+2x"],a:0,e:"Separable: dy/y=2dx → lny=2x+C → y=Ae^(2x)"},
+        {q:"Solve dy/dx=x/y with y=2 when x=0.",o:["y²=x²+4","y=x+2","y²=x²","y=√(x+4)"],a:0,e:"ydy=xdx → y²/2=x²/2+C; at(0,2): C=2 → y²=x²+4"},
+        {q:"Newton-Raphson formula?",o:["xₙ₊₁=xₙ−f(xₙ)/f'(xₙ)","xₙ₊₁=xₙ+f(xₙ)","xₙ₊₁=xₙ/f'(xₙ)","xₙ₊₁=f(xₙ)/f'(xₙ)"],a:0,e:"Newton-Raphson iterative formula"},
+        {q:"If f(2)=−3 and f(3)=5, root lies between?",o:["2 and 3","−3 and 5","0 and 2","3 and 5"],a:0,e:"Sign change: f(2)<0<f(3) → root between 2 and 3"},
+        {q:"Proof by contradiction: you first assume?",o:["The opposite of what you want to prove","The statement is true","A special case","All values work"],a:0},
+        {q:"Contrapositive of 'if p then q' is?",o:["If not q then not p","If q then p","If not p then not q","If p then not q"],a:0,e:"Contrapositive: ¬q → ¬p"},
+        {q:"Partial fractions: 5/(x(x+5))=?",o:["1/x−1/(x+5)","5/x−5/(x+5)","1/(x+5)−1/x","5/x+1/(x+5)"],a:0,e:"A(x+5)+Bx=5 → A=1,B=−1"},
+        {q:"Implicit differentiation of x²+y²=25. dy/dx=?",o:["−x/y","x/y","−y/x","2x+2y"],a:0,e:"2x+2y·dy/dx=0 → dy/dx=−x/y"},
+        {q:"Parametric: x=t², y=2t. dy/dx=?",o:["1/t","t","2","2t"],a:0,e:"dy/dx=(dy/dt)/(dx/dt)=2/(2t)=1/t"},
+        {q:"∫₀^(π/2)sinxcos³xdx=?",o:["1/4","1/2","1/3","1"],a:0,e:"u=cosx: ∫₁⁰(−u³)du=[u⁴/4]₀¹=1/4"},
+        {q:"Taylor series for eˣ starts with?",o:["1+x+x²/2!+x³/3!+...","x+x²+x³+...","1+x+x²+...","e+ex+..."],a:0,e:"eˣ=Σxⁿ/n!=1+x+x²/2+x³/6+..."},
+        {q:"d/dx(arcsinx)=?",o:["1/√(1−x²)","−1/√(1−x²)","1/(1+x²)","√(1−x²)"],a:0,e:"Standard result: d/dx(arcsinx)=1/√(1−x²)"},
+        {q:"∫1/x dx=?",o:["ln|x|+C","−1/x²+C","x²/2+C","1/x²+C"],a:0,e:"Standard integral: ln|x|+C"},
+        {q:"Maclaurin series: sin(x) starts with?",o:["x−x³/6+x⁵/120","1+x−x²/2","x+x³/6","1−x²/2+x⁴/24"],a:0,e:"sinx=x−x³/3!+x⁵/5!=x−x³/6+x⁵/120"},
+        {q:"d/dx(lnx)=?",o:["1/x","lnx/x","x·lnx","e^(1/x)"],a:0},
+        {q:"∫tanxdx=?",o:["ln|secx|+C","ln|sinx|+C","sec²x+C","−ln|cosx|+C"],a:0,e:"∫tanxdx=∫sinx/cosxdx; u=cosx → −ln|cosx|=ln|secx|+C"},
+        {q:"Conic: x²/9+y²/4=1 is?",o:["Ellipse","Circle","Hyperbola","Parabola"],a:0,e:"x²/a²+y²/b²=1 with a≠b is an ellipse"},
+        {q:"Binomial expansion: (1+x)^n for |x|<1. Valid for?",o:["Any real n","Positive integers only","n>1 only","n<0 only"],a:0,e:"Binomial series valid for any real n when |x|<1"},
+      ],
+    },
+  },
+};
+(function(){ try {
+  for(const [curr,subs] of Object.entries(QB_ALEVEL_MATH_EXTRA)){
+    for(const [sub,diffs] of Object.entries(subs)){
+      if(!QB[curr]) QB[curr]={};
+      if(!QB[curr][sub]) QB[curr][sub]={};
+      for(const [diff,qs] of Object.entries(diffs)){
+        if(!QB[curr][sub][diff]) QB[curr][sub][diff]=[];
+        QB[curr][sub][diff]=[...QB[curr][sub][diff],...qs];
+      }
+    }
+  }
+} catch(e){ console.warn('QB_ALEVEL_MATH_EXTRA merge error:', e); }
+})();
+
+// ══ QB_ALEVEL_PHYS_EXTRA — 100 new A-Level Physics questions ══
+const QB_ALEVEL_PHYS_EXTRA={
+  "A-Level":{
+    Physics:{
+      AS:[
+        {q:"Car accelerates from 10 m/s to 30 m/s in 5 s. Acceleration?",o:["4 m/s²","6 m/s²","20 m/s²","2 m/s²"],a:0,e:"a=(v−u)/t=(30−10)/5=4 m/s²"},
+        {q:"Object thrown vertically up at 20 m/s. Maximum height? (g=10)",o:["20 m","40 m","10 m","30 m"],a:0,e:"v²=u²−2gh → 0=400−20h → h=20 m"},
+        {q:"Newton's 3rd law: force of bat on ball vs force of ball on bat?",o:["Equal and opposite","Equal, same direction","Ball force is smaller","Depends on bat speed"],a:0},
+        {q:"Work done by 50 N force moving 8 m in direction of force?",o:["400 J","6.25 J","58 J","400 W"],a:0,e:"W=Fd=50×8=400 J"},
+        {q:"Power of engine doing 600 J in 3 s?",o:["200 W","1800 W","180 W","603 W"],a:0,e:"P=W/t=600/3=200 W"},
+        {q:"5 kg object at height 10 m. GPE? (g=10)",o:["500 J","50 J","5000 J","250 J"],a:0,e:"GPE=mgh=5×10×10=500 J"},
+        {q:"2 kg moving at 3 m/s collides and sticks to 1 kg at rest. Final speed?",o:["2 m/s","3 m/s","1.5 m/s","6 m/s"],a:0,e:"2×3=(2+1)×v' → v'=2 m/s"},
+        {q:"Hooke's law: k=200 N/m, x=0.15 m. Force?",o:["30 N","1.33 N","200 N","0.3 N"],a:0,e:"F=kx=200×0.15=30 N"},
+        {q:"Moment of 40 N force at perpendicular distance 0.3 m?",o:["12 Nm","133 Nm","40.3 Nm","0.3 Nm"],a:0,e:"M=F×d=40×0.3=12 Nm"},
+        {q:"Object in equilibrium: sum of clockwise moments equals?",o:["Sum of anticlockwise moments","Zero","The weight","Applied force"],a:0},
+        {q:"3 kg object falls freely for 4 s. Final velocity? (g=10)",o:["40 m/s","30 m/s","12 m/s","120 m/s"],a:0,e:"v=gt=10×4=40 m/s"},
+        {q:"Projectile horizontal velocity component throughout flight?",o:["Constant","Increases","Decreases","Zero at peak"],a:0,e:"No horizontal force → horizontal v constant"},
+        {q:"Centre of gravity is where?",o:["All weight acts","Mass is zero","Normal force acts","Speed is constant"],a:0},
+        {q:"Principle of conservation of momentum states?",o:["Total momentum constant if no external force","Momentum always increases","Momentum = KE","Total momentum is always zero"],a:0},
+        {q:"Elastic collision between equal masses: what happens to velocity?",o:["Velocities are exchanged","Both stop","Both double speed","No change"],a:0},
+        {q:"Frequency 400 Hz, wave speed 320 m/s. Wavelength?",o:["0.8 m","128000 m","1.25 m","80 m"],a:0,e:"λ=v/f=320/400=0.8 m"},
+        {q:"Transverse wave: particle oscillation direction?",o:["Perpendicular to wave travel","Parallel to wave travel","At 45°","No oscillation"],a:0},
+        {q:"Diffraction is most pronounced when?",o:["Wavelength ≈ gap size","Wavelength >> gap","Wavelength << gap","Wave speed is high"],a:0},
+        {q:"Constructive interference: path difference is?",o:["nλ","(n+½)λ","λ/4","Zero only"],a:0,e:"Constructive: path diff=0,λ,2λ..."},
+        {q:"Speed of light in glass (n=1.5)?",o:["2×10⁸ m/s","1.5×10⁸ m/s","3×10⁸ m/s","4.5×10⁸ m/s"],a:0,e:"v=c/n=3×10⁸/1.5=2×10⁸ m/s"},
+        {q:"Critical angle for glass-air (n=1.5). sinC=?",o:["0.667","1.5","0.5","0.866"],a:0,e:"sinC=1/n=1/1.5≈0.667"},
+        {q:"Young's double slit: increasing slit separation d?",o:["Decreases fringe spacing","Increases fringe spacing","No effect","Increases wavelength"],a:0,e:"w=λD/d → wider slits → closer fringes"},
+        {q:"Intensity of wave is proportional to?",o:["Amplitude²","Amplitude","Frequency","Wavelength²"],a:0,e:"I∝A²"},
+        {q:"Stationary wave nodes are points of?",o:["Zero displacement always","Maximum displacement","Half-wavelength intervals","Random displacement"],a:0},
+        {q:"Sound is a longitudinal wave because?",o:["Particles oscillate parallel to wave direction","Particles oscillate perpendicular","It can travel in vacuum","It has no wavelength"],a:0},
+        {q:"Ohm's law: V=20V, R=5Ω. Current?",o:["4 A","100 A","0.25 A","25 A"],a:0,e:"I=V/R=20/5=4 A"},
+        {q:"Three 6Ω resistors in series. Total resistance?",o:["18Ω","2Ω","0.5Ω","6Ω"],a:0,e:"R=6+6+6=18Ω"},
+        {q:"Two 6Ω resistors in parallel. Total resistance?",o:["3Ω","12Ω","1Ω","6Ω"],a:0,e:"1/R=1/6+1/6 → R=3Ω"},
+        {q:"Power in 8Ω resistor with 3A?",o:["72 W","24 W","11 W","192 W"],a:0,e:"P=I²R=9×8=72 W"},
+        {q:"EMF 12V, internal r=2Ω, external R=4Ω. Terminal voltage?",o:["8V","12V","4V","6V"],a:0,e:"I=12/6=2A; V=12−2×2=8V"},
+        {q:"Charge flow when 2A flows for 30 s?",o:["60 C","15 C","28 C","0.067 C"],a:0,e:"Q=It=60 C"},
+        {q:"KCL: current entering a junction equals?",o:["Current leaving","The EMF","Voltage/R","Maximum current"],a:0},
+        {q:"Potential divider: R₂=3R₁. Vout/Vin=?",o:["3/4","1/4","3","4/3"],a:0,e:"Vout/Vin=3R₁/(R₁+3R₁)=3/4"},
+        {q:"I-V graph of ohmic conductor is?",o:["Straight line through origin","Curve","Flat line","Exponential"],a:0},
+        {q:"Resistivity: R=ρL/A. R doubles when?",o:["L doubles","A doubles","ρ halves","R cannot change"],a:0,e:"R∝L → doubling L doubles R"},
+        {q:"Young's modulus = stress/strain. Units?",o:["Pa","Nm","Jm⁻¹","Dimensionless"],a:0},
+        {q:"500N on cross-section 2×10⁻⁴ m². Tensile stress?",o:["2.5×10⁶ Pa","1×10⁻⁷ Pa","1000 Pa","0.25 Pa"],a:0,e:"σ=500/(2×10⁻⁴)=2.5×10⁶ Pa"},
+        {q:"Elastic limit: beyond this point material?",o:["Does not return to original shape","Breaks","Young's modulus changes","Becomes stronger"],a:0},
+        {q:"Ductile material?",o:["Large plastic deformation before breaking","Breaks without deforming","Returns to shape after stress","Has high Young's modulus"],a:0},
+        {q:"Percentage uncertainty in 5.0±0.2 cm?",o:["4%","2%","0.2%","40%"],a:0,e:"(0.2/5.0)×100=4%"},
+        {q:"When multiplying measurements, uncertainties are?",o:["Added as percentages","Multiplied","Subtracted","Divided"],a:0},
+        {q:"Random error reduced by?",o:["Repeating and averaging","Calibrating equipment","Using a different method","Ignoring outliers"],a:0},
+        {q:"Systematic error affects?",o:["All readings in same direction","Random readings","Only some readings","Precision only"],a:0},
+        {q:"Precise but not accurate means?",o:["Low random error, high systematic error","High random, low systematic","Both high","Both low"],a:0},
+        {q:"Scalar quantity has?",o:["Magnitude only","Magnitude and direction","Direction only","Neither"],a:0},
+        {q:"Velocity is different from speed because?",o:["Velocity has direction","Velocity is always larger","Speed has direction","They are identical"],a:0},
+        {q:"Area under velocity-time graph gives?",o:["Displacement","Acceleration","Speed","Force"],a:0},
+        {q:"Gradient of displacement-time graph gives?",o:["Velocity","Acceleration","Distance","Force"],a:0},
+        {q:"Car brakes from 30 m/s to rest in 6 s. Deceleration?",o:["5 m/s²","180 m/s²","0.2 m/s²","36 m/s²"],a:0,e:"a=(0−30)/6=−5 m/s²"},
+        {q:"Kinetic energy of 4 kg object at 6 m/s?",o:["72 J","24 J","144 J","12 J"],a:0,e:"KE=½mv²=½×4×36=72 J"},
+      ],
+      A2:[
+        {q:"Gravitational field strength at distance r from mass M?",o:["GM/r²","GMm/r²","GM/r","GMr²"],a:0,e:"g=GM/r²"},
+        {q:"Gravitational potential at distance r from M?",o:["−GM/r","GM/r","−GMm/r","GM/r²"],a:0,e:"V=−GM/r (negative, attractive field)"},
+        {q:"Geostationary orbit period?",o:["24 hours","12 hours","90 min","365 days"],a:0,e:"Same as Earth's rotation = 24 hours"},
+        {q:"Escape velocity formula?",o:["√(2GM/R)","GM/R","2GM/R","√(GM/R)"],a:0,e:"v_esc=√(2GM/R)=√(2gR)"},
+        {q:"Kepler's 3rd law: T²∝?",o:["r³","r²","r","1/r²"],a:0,e:"T²∝r³"},
+        {q:"Gravitational PE between m and M at separation r?",o:["−GMm/r","GMm/r","−GM/r","GMm/r²"],a:0,e:"GPE=−GMm/r (negative, attractive)"},
+        {q:"Electric field due to point charge Q at distance r?",o:["kQ/r²","kQ/r","kQq/r²","Q/(4πε₀r)"],a:0,e:"E=kQ/r²"},
+        {q:"Force on charge q=2×10⁻⁶C in E=3×10⁴ N/C?",o:["0.06 N","1.5×10¹⁰ N","6×10⁻² N","3×10⁴ N"],a:0,e:"F=qE=2×10⁻⁶×3×10⁴=0.06 N"},
+        {q:"Uniform field E between plates, separation d, voltage V. E=?",o:["V/d","Vd","V/d²","d/V"],a:0,e:"E=V/d"},
+        {q:"Electric potential due to point charge: sign for positive Q?",o:["Positive","Negative","Zero","Depends on distance"],a:0,e:"V=kQ/r; positive Q → positive potential"},
+        {q:"Equipotential lines and field lines are?",o:["Perpendicular","Parallel","Identical","At 45°"],a:0},
+        {q:"Coulomb's law: distance halved, force becomes?",o:["4F","2F","F/4","F/2"],a:0,e:"F∝1/r²; r→r/2 → F→4F"},
+        {q:"Work done moving charge Q through potential V?",o:["QV","Q/V","V/Q","Q+V"],a:0,e:"W=QV"},
+        {q:"Electric field inside conductor in equilibrium?",o:["Zero","Maximum","Equal to surface","Uniform"],a:0},
+        {q:"Force on wire length L, current I, field B perpendicular?",o:["BIL","BIL/2","B²IL","IL/B"],a:0,e:"F=BILsin90°=BIL"},
+        {q:"Charged particle moving parallel to magnetic field: force?",o:["Zero","Maximum","qvB","Circular"],a:0,e:"F=qvBsinθ; θ=0 → F=0"},
+        {q:"Radius of circular motion of charge q, mass m, speed v in field B?",o:["mv/(qB)","qvB/m","m/(qvB)","qBv/m"],a:0,e:"qvB=mv²/r → r=mv/(qB)"},
+        {q:"Faraday's law: induced EMF=?",o:["−dΦ/dt","BIL","BAω","ΔΦ only"],a:0,e:"ε=−N·dΦ/dt"},
+        {q:"Lenz's law: induced current?",o:["Opposes the change causing it","Assists the change","Always clockwise","Flows in external circuit only"],a:0},
+        {q:"Capacitance C=Q/V. Unit?",o:["Farad","Volt","Coulomb","Ohm"],a:0},
+        {q:"Energy stored in capacitor: E=?",o:["½CV²","CV²","QV","Q/V"],a:0,e:"E=½CV²=Q²/2C=½QV"},
+        {q:"Capacitors 4F and 6F in series. Combined C?",o:["2.4 F","10 F","24 F","1.2 F"],a:0,e:"1/C=1/4+1/6=5/12 → C=2.4 F"},
+        {q:"Capacitors 4F and 6F in parallel. Combined C?",o:["10 F","2.4 F","24 F","5 F"],a:0,e:"C=4+6=10 F"},
+        {q:"Time constant τ for RC (R=2kΩ, C=500μF)?",o:["1 s","1000 s","0.25 s","4 s"],a:0,e:"τ=RC=2000×0.0005=1 s"},
+        {q:"After 1 time constant, remaining charge on discharging capacitor?",o:["37%","63%","50%","100%"],a:0,e:"Q=Q₀e^(−1)≈0.37Q₀"},
+        {q:"Graph of lnQ vs t for discharging capacitor?",o:["Straight line, negative gradient","Curve","Horizontal","Straight line, positive gradient"],a:0,e:"lnQ=lnQ₀−t/RC → straight line, gradient=−1/RC"},
+        {q:"SHM acceleration: a=?",o:["−ω²x","ω²x","−ωx","ωx²"],a:0,e:"a=−ω²x"},
+        {q:"SHM maximum speed at?",o:["Equilibrium (x=0)","Maximum displacement","Halfway","Always same"],a:0},
+        {q:"Pendulum length L. Period T=?",o:["2π√(L/g)","2π√(g/L)","π√(L/g)","2√(L/g)"],a:0,e:"T=2π√(L/g)"},
+        {q:"Spring-mass: angular frequency ω=?",o:["√(k/m)","√(m/k)","k/m","2π√(m/k)"],a:0,e:"ω=√(k/m)"},
+        {q:"SHM: at x=A (amplitude), velocity=?",o:["0","ωA","Maximum","−ωA"],a:0,e:"v=ω√(A²−x²); at x=A: v=0"},
+        {q:"SHM total energy ∝?",o:["A²","A","1/A","ω"],a:0,e:"E=½mω²A²∝A²"},
+        {q:"Resonance occurs when driving frequency=?",o:["Natural frequency","2× natural frequency","Half natural frequency","Any frequency"],a:0},
+        {q:"In beta-plus decay, a proton converts to a?",o:["Neutron + positron + neutrino","Neutron + electron","Electron + antineutrino","Alpha particle"],a:0,e:"p → n + e⁺ + ν (beta-plus / positron emission)"},
+        {q:"Beta-minus: neutron converts to?",o:["Proton+electron+antineutrino","Proton+positron+neutrino","Electron+neutrino","Proton only"],a:0,e:"n → p + e⁻ + ν̄"},
+        {q:"Activity is defined as?",o:["Decays per second","Number of nuclei","Half-life","Energy per decay"],a:0,e:"Activity = decay rate in Becquerels"},
+        {q:"Fraction remaining after 3 half-lives?",o:["1/8","1/4","1/6","1/3"],a:0,e:"(½)³=1/8"},
+        {q:"Highest binding energy per nucleon: which element?",o:["Iron (Fe-56)","Uranium","Hydrogen","Carbon"],a:0,e:"Fe-56 most stable nucleus"},
+        {q:"N=N₀e^(−λt). λ is?",o:["Decay constant","Half-life","Activity","Binding energy"],a:0,e:"λ = decay constant; T½=ln2/λ"},
+        {q:"Ideal gas: at constant T, P doubles. Volume?",o:["Halves","Doubles","Stays same","Quadruples"],a:0,e:"Boyle's law: PV=const → P↑2x → V↓2x"},
+        {q:"Absolute zero=?",o:["−273°C","0°C","−100°C","−373°C"],a:0,e:"0 K=−273.15°C"},
+        {q:"Internal energy of ideal gas depends only on?",o:["Temperature","Pressure","Volume","Density"],a:0},
+        {q:"Boltzmann constant k links T to?",o:["Mean KE per molecule","Pressure","Volume","Total internal energy"],a:0,e:"KE=3/2 kT per molecule"},
+        {q:"Root mean square speed of gas ∝?",o:["√T","T","T²","1/T"],a:0,e:"v_rms=√(3RT/M)∝√T"},
+        {q:"Photoelectric equation: hf=φ+KE_max. φ is?",o:["Work function","Frequency","Kinetic energy","Planck's constant"],a:0,e:"φ=work function (minimum energy to free electron)"},
+        {q:"De Broglie wavelength: λ=?",o:["h/mv","mv/h","h×mv","m/(hv)"],a:0,e:"λ=h/p=h/(mv)"},
+        {q:"Electron diffraction proves electrons have?",o:["Wave properties","Particle properties only","No charge","Mass of a photon"],a:0,e:"Diffraction is a wave phenomenon"},
+        {q:"Energy of photon with frequency f?",o:["hf","h/f","hc","f/h"],a:0,e:"E=hf"},
+        {q:"Half-life T½ related to decay constant λ by?",o:["T½=ln2/λ","T½=λ/ln2","T½=1/λ","T½=λ·ln2"],a:0,e:"T½=ln2/λ≈0.693/λ"},
+        {q:"In nuclear fission, binding energy per nucleon?",o:["Increases","Decreases","Stays same","Goes to zero"],a:0,e:"Fission splits heavy nucleus → increases binding energy/nucleon → releases energy"},
+        {q:"Transformer: Vp/Vs=?",o:["Np/Ns","Ns/Np","Is/Ip","Ip/Is"],a:0,e:"Vp/Vs=Np/Ns (turns ratio)"},
+      ],
+    },
+  },
+};
+(function(){ try {
+  for(const [curr,subs] of Object.entries(QB_ALEVEL_PHYS_EXTRA)){
+    for(const [sub,diffs] of Object.entries(subs)){
+      if(!QB[curr]) QB[curr]={};
+      if(!QB[curr][sub]) QB[curr][sub]={};
+      for(const [diff,qs] of Object.entries(diffs)){
+        if(!QB[curr][sub][diff]) QB[curr][sub][diff]=[];
+        QB[curr][sub][diff]=[...QB[curr][sub][diff],...qs];
+      }
+    }
+  }
+} catch(e){ console.warn('QB_ALEVEL_PHYS_EXTRA merge error:', e); }
 })();
 
 // ══ QB_IGCSE_BOOST — expands thin IGCSE science pools ══
@@ -6698,7 +6965,7 @@ function runBattle(cfg){
     const atabs=$('atabs'); if(atabs) atabs.style.display='';
     const won=uSc>oSc; const isDraw=uSc===oSc;
     // Play win/lose sound
-    setTimeout(()=>{ if(!isDraw){ if(won&&typeof sfxWin==='function') sfxWin(); else if(!won&&typeof sfxLose==='function') sfxLose(); } }, 300);
+    setTimeout(()=>{ if(!isDraw){ if(won){ if(typeof sfxWin==='function') sfxWin(); if(typeof launchConfetti==='function') launchConfetti(); } else if(!won&&typeof sfxLose==='function') sfxLose(); } }, 300);
     const noElo=questions.length<5; // 3Q battles don't affect ELO
     const _rawDelta=noElo||isDraw?0:eloCalc(S.user.elo,opponent.elo,won);
     const delta=_rawDelta===0?0:Math.round(_rawDelta*(_aiEloMult||1.0));
@@ -9373,6 +9640,36 @@ function sfxWrong(){
 }
 function sfxTick(){
   _playTone(880, 'square', 0.04, 0.06);
+}
+function launchConfetti(){
+  const canvas=document.createElement('canvas');
+  canvas.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:9998;width:100%;height:100%';
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  document.body.appendChild(canvas);
+  const ctx=canvas.getContext('2d');
+  const colors=['#6366f1','#8b5cf6','#10b981','#f59e0b','#ef4444','#06b6d4','#a855f7','#f472b6'];
+  const pieces=Array.from({length:140},()=>({
+    x:Math.random()*canvas.width, y:Math.random()*canvas.height*0.5-50,
+    vx:(Math.random()-.5)*7, vy:Math.random()*-9-3,
+    w:Math.random()*10+4, h:Math.random()*6+3,
+    color:colors[Math.floor(Math.random()*colors.length)],
+    rot:Math.random()*360, vr:(Math.random()-.5)*12, life:1
+  }));
+  let raf;
+  (function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive=false;
+    pieces.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy; p.vy+=0.18; p.rot+=p.vr; p.life-=0.013;
+      if(p.life>0) alive=true;
+      ctx.save(); ctx.globalAlpha=Math.max(0,p.life);
+      ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
+      ctx.fillStyle=p.color; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    });
+    if(alive) raf=requestAnimationFrame(animate); else canvas.remove();
+  })();
+  setTimeout(()=>{cancelAnimationFrame(raf);canvas.remove();},4500);
 }
 function sfxWin(){
   [523,659,784,1047].forEach((f,i) => _playTone(f,'sine',0.22,0.14,i*0.1));
